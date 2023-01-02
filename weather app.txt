@@ -1,0 +1,33 @@
+let form = document.querySelector("form")
+let input = document.querySelector("input")
+let h2 = document.querySelector("h2")
+h2.style.color = "white"
+let h3 = document.querySelector("h3")
+h3.style.color = "white"
+
+
+form.addEventListener("submit", getData)
+
+
+    async function getData(e){
+        e.preventDefault()
+        let response = await fetch(`http://api.weatherapi.com/v1/forecast.json?key=abfd9f70f4c74fe895182754220912&q=${input.value}&days=10&aqi=yes&alerts=yes`)
+        let data = await response.json()
+        let cityName = data.location.name
+        let tempreture = data.current.temp_c
+        h2.innerText = cityName
+        h3.innerText = `${tempreture}°C`
+        let icon = data.current.condition.icon
+        let text = data.current.condition.text
+        let img = document.querySelector("img")
+        img.setAttribute('src',`https:${icon}`)
+        let div = document.getElementById("background")
+         div.style.backgroundImage = `URL(https://source.unsplash.com/random/?${input.value})`
+         div.style.backgroundSize = "cover"
+         div.style.backgroundPosition = "center"
+        form.reset()
+        let button = document.querySelector("button")
+
+
+}
+    
