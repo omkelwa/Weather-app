@@ -12,7 +12,7 @@ form.addEventListener("submit", getData)
     async function getData(e){
         e.preventDefault()
     try{
-        let response = await fetch(`http://api.weatherapi.com/v1/forecast.json?key=abfd9f70f4c74fe895182754220912&q=${input.value}&days=10&aqi=yes&alerts=yes`)
+        let response = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=abfd9f70f4c74fe895182754220912&q=${input.value}&days=10&aqi=yes&alerts=yes`)
         let data = await response.json()
         let cityName = data.location.name
         let region = data.location.region
